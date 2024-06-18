@@ -43,11 +43,11 @@ app.post('/api/shorturl', function(req, res) {
   
   dns.lookup(hostname, function(err, address, family) {
       if (err) {
-        res.json({"error": "Invalid URL"})
+        return res.json({"error": "Invalid URL"})
       }
       count+= 1;
-  urlList[count] = url;
-  res.json({"original_url": url, "short_url": count});
+  urlList[count] = url.href;
+  return res.json({"original_url": url, "short_url": count});
       
   });
 });
